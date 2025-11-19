@@ -33,15 +33,21 @@ The system integrates:
 
 ```mermaid
 flowchart TD
-    A[Video Input] --> B[Speech-to-Text Engine]
-    C[Lecture Slides] --> D[Slide Parser]
+    A[Video Input]:::input --> B[Speech to Text Engine]:::process
+    C[Lecture Slides]:::input --> D[Slide Parser]:::process
 
-    B --> E[Transcript Cleaning]
-    D --> F[Slide Content Extractor]
+    B --> E[Transcript Cleaning]:::process
+    D --> F[Slide Content Extraction]:::process
 
-    E --> G[Multimodal Alignment Layer]
+    E --> G[Multimodal Alignment Layer]:::core
     F --> G
 
-    G --> H[LLM Summarizer]
-    H --> I[Structured Note Formatter]
-    I --> J[Final Notes (PDF/MD/DOCX)]
+    G --> H[LLM Summarizer]:::core
+    H --> I[Note Formatter]:::process
+    I --> J[Final Notes Output]:::output
+
+    classDef input fill:#d1ecf1,stroke:#0c5460,color:#0c5460;
+    classDef process fill:#f8f9fa,stroke:#6c757d,color:#343a40;
+    classDef core fill:#e2e3ff,stroke:#383d9a,color:#383d9a;
+    classDef output fill:#d4edda,stroke:#155724,color:#155724;
+
